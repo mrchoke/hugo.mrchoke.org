@@ -1,0 +1,71 @@
+FROM mrchoke/hugo:ext-debian
+LABEL maintainer="Supphachoke Suntiwichaya <mrchoke@gmail.com>"
+
+ENV TZ=Asia/Bangkok
+
+ARG FISH_VERSION="3.5.1-1"
+
+RUN apt update \
+  && apt install -y \
+  curl \
+  gettext-base \
+  git \
+  gpgconf \
+  jq \
+  less \
+  libpcre2-32-0 \
+  locales \
+  man-db \
+  peco \
+  python3 \
+  rsync \
+  sudo \
+  tmux \
+  vim-tiny \
+  && apt clean
+
+RUN sed --in-place '/en_US.UTF-8/s/^#//' /etc/locale.gen  \
+  &&  sed --in-place '/th_TH.UTF-8/s/^#//' /etc/locale.gen \
+  && locale-gen
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+ARG USERNAME=hugo
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME}
+
+RUN TARGETARCH=$(dpkg --print-architecture) \
+  && curl -sLO "https://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_11/${TARGETARCH}/fish_${FISH_VERSION}_${TARGETARCH}.deb" \
+  && dpkg -i fish_${FISH_VERSION}_${TARGETARCH}.deb \
+  && rm -rf fish_${FISH_VERSION}_${TARGETARCH}.deb \
+  && echo /usr/bin/fish >> /etc/shells 
+
+RUN groupadd --gid ${USER_GID} ${USERNAME}  \
+  && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} -s /usr/bin/fish
+
+RUN npm install -g npm \
+  && npm install -g pnpm
+
+RUN mkdir -p /workspace/hugo && chown -R ${USERNAME} /workspace
+
+USER ${USERNAME}
+ENV HOME=/home/${USERNAME}
+RUN mkdir -p /home/${USERNAME}/.config/fish/functions /home/${USERNAME}/.config/fish/completions 
+  
+COPY --chown=${USERNAME} fish_variables /home/${USERNAME}/.config/fish/fish_variables
+COPY --chown=${USERNAME} fish_prompt.fish /home/${USERNAME}/.config/fish/functions/fish_prompt.fish
+COPY --chown=${USERNAME} fish_search.fish /home/${USERNAME}/.config/fish/functions/fish_search.fish
+COPY --chown=${USERNAME} fish_bind_search.fish /home/${USERNAME}/.config/fish/config.fish
+
+RUN hugo completion fish > /home/${USERNAME}/.config/fish/completions/hugo.fish \
+  && pnpm install-completion fish
+
+WORKDIR /workspace/hugo
+
+CMD [ "sleep", "infinity"  ]

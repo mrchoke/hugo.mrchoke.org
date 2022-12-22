@@ -1,0 +1,79 @@
+{
+  "name": "Hugo Image",
+  "dockerComposeFile": [
+    "./docker-compose.yml"
+  ],
+  "service": "hugo",
+  "workspaceFolder": "/workspace/hugo",
+  "containerUser": "hugo",
+  "init": true,
+  "updateRemoteUserUID": true,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "akmittal.hugofy",
+        "budparr.language-hugo-vscode",
+        "eliostruyf.vscode-front-matter",
+        "eliostruyf.vscode-hugo-themer",
+        "geeebe.duplicate",
+        "kaellarkin.hugo-shortcode-syntax",
+        "oderwat.indent-rainbow",
+        "redhat.vscode-yaml",
+        "rusnasonov.vscode-hugo",
+        "syler.sass-indented"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "fish",
+        "remote.localPortHost": "allInterfaces",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.formatOnType": false,
+        "editor.formatOnSaveMode": "file",
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "indentRainbow.indicatorStyle": "light",
+        "volar.format.initialIndent": {
+          "javascript": true,
+          "typescript": true,
+          "html": true,
+          "css": false
+        },
+        "editor.minimap.enabled": false,
+        "terminal.integrated.cursorBlinking": true,
+        "editor.tabSize": 2,
+        "javascript.format.semicolons": "remove",
+        "typescript.format.semicolons": "remove",
+        "editor.bracketPairColorization.enabled": true,
+        "volar.autoCompleteRefs": true,
+        "volar.codeLens.scriptSetupTools": true,
+        "volar.vueserver.petiteVue.processHtmlFile": false,
+        "volar.completion.preferredTagNameCase": "auto-kebab",
+        "editor.guides.indentation": true,
+        "editor.guides.bracketPairs": true,
+        "editor.autoClosingBrackets": "always",
+        "editor.inlineSuggest.enabled": true,
+        "editor.guides.highlightActiveIndentation": false,
+        "workbench.colorCustomizations": {
+          "editorUnnecessaryCode.border": "#fbbd52",
+          "editorUnnecessaryCode.opacity": "#ffffff8b",
+          "editorIndentGuide.background": "#2a2a2a"
+        },
+        "editor.showUnused": true,
+        "editor.renderLineHighlight": "gutter",
+        "terminal.integrated.gpuAcceleration": "on",
+        "terminal.integrated.copyOnSelection": true,
+        "terminal.integrated.cursorStyle": "line",
+        "terminal.integrated.fontSize": 15,
+        "editor.quickSuggestions": {
+          "other": "on",
+          "comments": "on",
+          "strings": "on"
+        },
+        "html.format.wrapAttributes": "force-expand-multiline",
+        "indentRainbow.lightIndicatorStyleLineWidth": 1
+      }
+    }
+  },
+  "forwardPorts": [
+    1313
+  ]
+}
