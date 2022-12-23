@@ -10,6 +10,7 @@ RUN apt update \
   curl \
   gettext-base \
   git \
+  gpg \
   gpgconf \
   jq \
   less \

@@ -1,0 +1,26 @@
+readMore:
+  other: อ่านต่อ
+readingTime:
+  other: "ใช้เวลาอ่าน {{ .Count }} นาที"
+toc:
+  other: สารบัญ
+seriesOfPosts:
+  other: บทความ
+previous:
+  other: ก่อนหน้า
+next:
+  other: ถัดไป
+seeAlso:
+  other: ที่คล้ายกัน
+recent:
+  other: ล่าสุด
+onThisPage:
+  other: ในหน้านี้
+editThisPage:
+  other: แก้ไขหน้านี้
+light:
+  other: Light
+dark:
+  other: Dark
+auto:
+  other: Auto

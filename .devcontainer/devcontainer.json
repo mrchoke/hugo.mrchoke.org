@@ -20,7 +20,8 @@
         "oderwat.indent-rainbow",
         "redhat.vscode-yaml",
         "rusnasonov.vscode-hugo",
-        "syler.sass-indented"
+        "syler.sass-indented",
+        "tamasfe.even-better-toml"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "fish",
