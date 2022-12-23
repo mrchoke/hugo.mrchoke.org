@@ -22,7 +22,8 @@ defaults:
 jobs:
   # Build job
   deploy:
-    runs-on: mrchoke/hugo:ext-debian
+    runs-on: ubuntu-latest
+    container: mrchoke/hugo:ext-debian
     steps:
       - name: Checkout
         uses: actions/checkout@v3
