@@ -26,7 +26,7 @@ jobs:
     container: mrchoke/hugo:ext-debian
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
         with:
           submodules: recursive
       - name: Install Node.js dependencies
@@ -45,7 +45,7 @@ jobs:
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2.1
         with:
-          switches: -avzr --delete
+          switches: -avzr --delete --compress
           path: public/
           remote_path: ${{ secrets.DEPLOY_PATH }}
           remote_host: ${{ secrets.DEPLOY_HOST }}
