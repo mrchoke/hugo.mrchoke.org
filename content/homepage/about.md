@@ -10,7 +10,7 @@ organization:
 social:
   - icon: facebook-f
     iconPack: fab
-    url: https://fb.me/mrchoke
+    url: https://fb.me/mrchoke.org
   - icon: youtube
     iconPack: fab
     url: https://youtube.com/@mrchoke

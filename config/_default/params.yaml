@@ -46,8 +46,8 @@ comment:
   # Options: disqus, commento, valine and utterances.
   handler:
 
-  # disqus:
-  #   shortname:
+  disqus:
+    shortname: mrchokedotorg
 
   # utterances:
   #   # Browse https://utteranc.es/ to see the options available.
