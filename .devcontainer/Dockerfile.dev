@@ -3,7 +3,7 @@ LABEL maintainer="Supphachoke Suntiwichaya <mrchoke@gmail.com>"
 
 ENV TZ=Asia/Bangkok
 
-ARG FISH_VERSION="3.5.1-1"
+ARG FISH_VERSION="3.6.0-1"
 
 RUN apt update \
   && apt install -y \
