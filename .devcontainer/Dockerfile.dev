@@ -3,8 +3,6 @@ LABEL maintainer="Supphachoke Suntiwichaya <mrchoke@gmail.com>"
 
 ENV TZ=Asia/Bangkok
 
-ARG FISH_VERSION="3.5.1-1"
-
 RUN apt update \
   && apt install -y \
   curl \
@@ -23,13 +21,19 @@ RUN apt update \
   sudo \
   tmux \
   vim-tiny \
-  && apt clean
-
-RUN sed --in-place '/en_US.UTF-8/s/^#//' /etc/locale.gen  \
+  &&  sed --in-place '/en_US.UTF-8/s/^#//' /etc/locale.gen  \
   &&  sed --in-place '/th_TH.UTF-8/s/^#//' /etc/locale.gen \
-  && locale-gen
+  &&  locale-gen \
+  &&  ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
+  && echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_11/ /' >/etc/apt/sources.list.d/shells:fish:release:3.list \
+  && curl -fsSL 'https://download.opensuse.org/repositories/shells:fish:release:3/Debian_11/Release.key' | gpg --dearmor >/etc/apt/trusted.gpg.d/shells_fish_release_3.gpg  \
+  && apt update \
+  && apt install -y fish \
+  && echo /usr/bin/fish >> /etc/shells \
+  && apt-get clean autoclean \
+  && apt-get autoremove --yes \
+  && rm -rf /var/lib/{apt,dpkg,cache,log}/ 
 
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
@@ -40,12 +44,6 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 RUN echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME}
-
-RUN TARGETARCH=$(dpkg --print-architecture) \
-  && curl -sLO "https://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_11/${TARGETARCH}/fish_${FISH_VERSION}_${TARGETARCH}.deb" \
-  && dpkg -i fish_${FISH_VERSION}_${TARGETARCH}.deb \
-  && rm -rf fish_${FISH_VERSION}_${TARGETARCH}.deb \
-  && echo /usr/bin/fish >> /etc/shells 
 
 RUN groupadd --gid ${USER_GID} ${USERNAME}  \
   && useradd --uid ${USER_UID} --gid ${USER_GID} -m ${USERNAME} -s /usr/bin/fish
@@ -58,7 +56,7 @@ RUN mkdir -p /workspace/hugo && chown -R ${USERNAME} /workspace
 USER ${USERNAME}
 ENV HOME=/home/${USERNAME}
 RUN mkdir -p /home/${USERNAME}/.config/fish/functions /home/${USERNAME}/.config/fish/completions 
-  
+
 COPY --chown=${USERNAME} fish_variables /home/${USERNAME}/.config/fish/fish_variables
 COPY --chown=${USERNAME} fish_prompt.fish /home/${USERNAME}/.config/fish/functions/fish_prompt.fish
 COPY --chown=${USERNAME} fish_search.fish /home/${USERNAME}/.config/fish/functions/fish_search.fish
