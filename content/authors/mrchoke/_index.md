@@ -1,24 +1,24 @@
 ---
 # Name
 title: MrChoke
-role:
-bio:
+role: null
+bio: null
 avatar: images/icon.png
 
 organization:
-  name: MrChoke.Org
-  url:
-
+  name: Just For Fun
+  url: null
 social:
-  - icon: envelope
-    iconPack: fas
-    url: mailto:example@example.com
-  - icon: twitter
+  - icon: facebook-f
     iconPack: fab
-    url: https://example.com/
+    url: https://fb.me/mrchoke.org
+  - icon: youtube
+    iconPack: fab
+    url: https://youtube.com/@mrchoke
   - icon: github
     iconPack: fab
-    url: https://example.com/
+    url: https://github.com/mrchoke
+lastmod: 2022-12-27T19:38:55.423Z
 ---
 
 ## MrChoke.Org

@@ -1,10 +1,13 @@
 main:
   - name: About
-    url: '#about'
-    weight: 1
+    url: "#about"
+    weight: 3
   - name: Posts
     url: /posts/
-    weight: 2
+    weight: 1
   - name: Docs
     url: /docs/
-    weight: 3
+    weight: 2
+  - name: Archive
+    url: https://static.mrchoke.org
+    weight: 4
