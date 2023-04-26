@@ -6,7 +6,7 @@ authors: []
 tags: [docker, devcontainer, vscode]
 featuredImage: docs/vscode/devcontainer/docker-vscode.jpg
 date: 2023-04-23T23:30:37+07:00
-lastmod: 2023-04-23T23:30:37+07:00
+lastmod: 2023-04-26T17:45:37+07:00
 draft: false
 weight: 2
 ---
@@ -27,7 +27,7 @@ weight: 2
 
 ## ปฐมบทการสร้าง Dev Container
 
-ง่ายที่สุดสำหรับสร้าง Dev Container คือ อยากใช้ Docker image ตัวไหนที่เล็งไว้ก็เอามาใช้ได้เลย เช่น จะเขียน Python ก็เลือก python:11 จะเขียน node ก็ใช้ node:16 เป็นต้น 
+ง่ายที่สุดสำหรับสร้าง Dev Container คือ อยากใช้ Docker image ตัวไหนที่เล็งไว้ก็เอามาใช้ได้เลย เช่น จะเขียน Python ก็เลือก python:3.11 จะเขียน node ก็ใช้ node:16 เป็นต้น 
 
 ตัวอย่างแรกนี้เรามาเริ่มกันด้วย `python:3.11` เมื่อ up ขึ้นมาแล้วเราก็สามารถเขียน python กันในนี้ได้เลย
 
