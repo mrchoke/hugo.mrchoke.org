@@ -1,5 +1,5 @@
 {
-  "name": "Hugo Image",
+  "name": "Hugo Builder",
   "dockerComposeFile": [
     "./docker-compose.yml"
   ],
@@ -8,23 +8,19 @@
   "containerUser": "hugo",
   "init": true,
   "updateRemoteUserUID": true,
+  "postCreateCommand": ".devcontainer/post_create.sh",
   "customizations": {
     "vscode": {
       "extensions": [
-        "akmittal.hugofy",
-        "budparr.language-hugo-vscode",
-        "eliostruyf.vscode-front-matter",
-        "eliostruyf.vscode-hugo-themer",
-        "geeebe.duplicate",
-        "kaellarkin.hugo-shortcode-syntax",
+        "esbenp.prettier-vscode",
+        "formulahendry.auto-complete-tag",
         "oderwat.indent-rainbow",
-        "redhat.vscode-yaml",
-        "rusnasonov.vscode-hugo",
         "syler.sass-indented",
-        "tamasfe.even-better-toml"
+        "geeebe.duplicate",
+        "redhat.vscode-yaml"
       ],
       "settings": {
-        "terminal.integrated.defaultProfile.linux": "fish",
+        "terminal.integrated.defaultProfile.linux": "zsh",
         "remote.localPortHost": "allInterfaces",
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,
@@ -56,7 +52,7 @@
         "workbench.colorCustomizations": {
           "editorUnnecessaryCode.border": "#fbbd52",
           "editorUnnecessaryCode.opacity": "#ffffff8b",
-          "editorIndentGuide.background": "#2a2a2a"
+          "editorIndentGuide.background1": "#2a2a2a"
         },
         "editor.showUnused": true,
         "editor.renderLineHighlight": "gutter",
@@ -76,5 +72,16 @@
   },
   "forwardPorts": [
     1313
-  ]
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "upgradePackages": "false",
+      "installOhMyZsh": "true",
+      "configureZshAsDefaultShell": "true",
+      "username": "hugo",
+      "userUid": "1000",
+      "userGid": "1000"
+    }
+  }
 }
