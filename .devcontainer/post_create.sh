@@ -10,5 +10,4 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugi
 
 sudo corepack enable
 
-sudo chown -R 1000:1000 /workspace \
-  && pnpm install-completion zsh
+sudo chown -R 1000:1000 /workspace
