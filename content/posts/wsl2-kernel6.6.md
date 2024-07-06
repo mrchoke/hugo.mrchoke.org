@@ -2,6 +2,7 @@
 title: "การ Compile Kernel 6.6 LTS สำหรับ WSL2"
 description: เนื่องจาก WSL2 ได้ปล่อย kernel ใหม่ รุ่น 6.6 lts  แต่ยังไม่ปล่อยมาพร้อมกับตัว update หลักถ้าอยากใช้ตอนนี้ก็ต้อง build kernel เองซึ่งก็ไม่ยากเกินไปสามารถทำกันได้ตามขั้นตอนดังนี้
 date: 2024-07-05T11:17:33+07:00
+lastmod: 2024-07-06T21:07:33+07:00
 featuredImage: posts/wsl2/system-info.png
 draft: false
 ---
