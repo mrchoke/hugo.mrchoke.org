@@ -5,7 +5,8 @@
   ],
   "service": "hugo",
   "workspaceFolder": "/workspace/hugo",
-  "containerUser": "hugo",
+  "containerUser": "node",
+  "remoteUser": "node",
   "init": true,
   "updateRemoteUserUID": true,
   "postCreateCommand": ".devcontainer/post_create.sh",
@@ -78,10 +79,7 @@
       "installZsh": "true",
       "upgradePackages": "false",
       "installOhMyZsh": "true",
-      "configureZshAsDefaultShell": "true",
-      "username": "hugo",
-      "userUid": "1000",
-      "userGid": "1000"
+      "configureZshAsDefaultShell": "true"
     }
   }
 }

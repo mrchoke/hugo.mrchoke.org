@@ -1,30 +1,30 @@
-FROM mrchoke/hugo:ext-debian
+FROM hugomods/hugo:latest
 LABEL maintainer="Supphachoke Suntiwichaya <mrchoke@gmail.com>"
 
 ENV TZ=Asia/Bangkok
 
-RUN apt update \
-  && apt install -y \
-  curl \
-  gettext-base \
-  git \
-  gpgconf \
-  jq \
-  less \
-  libpcre2-32-0 \
-  locales \
-  man-db \
-  peco \
-  python3 \
-  rsync \
-  sudo \
-  tmux \
-  vim-tiny \
-  && apt clean
+#RUN apt update \
+#  && apt install -y \
+#  curl \
+#  gettext-base \
+#  git \
+#  gpgconf \
+#  jq \
+#  less \
+#  libpcre2-32-0 \
+#  locales \
+#  man-db \
+#  peco \
+#  python3 \
+#  rsync \
+#  sudo \
+#  tmux \
+#  && apt clean
 
-RUN sed --in-place '/en_US.UTF-8/s/^#//' /etc/locale.gen  \
-  &&  sed --in-place '/th_TH.UTF-8/s/^#//' /etc/locale.gen \
-  && locale-gen
+RUN apk add --no-cache --update musl musl-utils musl-locales tzdata sudo
+#RUN sed --in-place '/en_US.UTF-8/s/^#//' /etc/locale.gen  \
+#  &&  sed --in-place '/th_TH.UTF-8/s/^#//' /etc/locale.gen \
+#  && locale-gen
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -32,11 +32,11 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-ARG USERNAME=hugo
+ARG USERNAME=node
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-RUN echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME}
+RUN mkdir -p /etc/sudoers.d && echo ${USERNAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME}
 
 
 RUN mkdir -p /workspace/hugo && chown -R ${USER_UID} /workspace
