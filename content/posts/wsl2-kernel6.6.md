@@ -67,9 +67,10 @@ nano -w $(wslpath  "$(powershell.exe Write-Host -NoNewLine '$env:USERPROFILE')")
 
 สำหรับใน Linux จริง ๆ ถ้าเรารู้ path ก็เรียกตรง ๆ ได้เลย เช่น `/mnt/c/Users/mrchoke/.wslconfig`
 
-เพิ่มบรรทัดต่อไปนี้ลงไปใน .wslconfig
+เพิ่มบรรทัดต่อไปนี้ลงไปใน .wslconfig ภายใต้ section `[wsl2]`
 
 ```
+[wsl2]
 kernel=C:\\kernel\\bzImage
 ```
 *อย่าลืมใช้ \\\\ นะครับไม่ใช่ \\*
@@ -93,7 +94,7 @@ wsl
 ```
 
 uname -a 
-ีีuname -r
+uname -r
 
 ```
 
