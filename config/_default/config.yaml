@@ -3,9 +3,9 @@ title: MrChoke.Org
 
 theme: eureka
 
-paginate: 3
+pagination.pagerSize: 3
 copyright: >
-  &copy; 2022 - 2023 <a href="https://mrchoke.org/">MrChoke.Org</a>
+  &copy; 2022 - 2024 <a href="https://mrchoke.org/">MrChoke.Org</a>
 
 enableEmoji: true
 enableGitInfo: true
