@@ -1,4 +1,4 @@
-FROM hugomods/hugo:latest
+FROM hugomods/hugo:ci
 LABEL maintainer="Supphachoke Suntiwichaya <mrchoke@gmail.com>"
 
 ENV TZ=Asia/Bangkok
@@ -32,7 +32,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-ARG USERNAME=node
+ARG USERNAME=hugo
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 

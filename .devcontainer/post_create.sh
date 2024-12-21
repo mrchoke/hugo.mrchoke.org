@@ -10,4 +10,4 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugi
 
 sudo corepack enable
 
-sudo chown -R 1000:1000 /workspace
+sudo chown -R ${UID}:${GID} /workspace
