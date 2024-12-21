@@ -31,4 +31,4 @@ jobs:
 
     - name: Deploy to DigitalOcean
       run: |
-        rsync -avz --delete --compress public/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
+        rsync -avz --delete --compress -e "ssh -i ${{ secrets.DEPLOY_KEY }}" public/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
