@@ -1,46 +1,34 @@
-name: Deploy Hugo site to Pages
+name: Deploy Hugo to DigitalOcean
 
 on:
   push:
-    branches: ["main"]
-
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  id-token: write
-
-defaults:
-  run:
-    shell: bash
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container: mrchoke/hugo:ext-debian
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          submodules: recursive
-      - name: Install Node.js dependencies
-        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
-      - name: check files
-        run: pwd && ls -l
-      - name: Build with Hugo
-        env:
-          HUGO_ENVIRONMENT: production
-          HUGO_ENV: production
-        run: |
-          hugo \
-            --minify \
-            --baseURL "${{ secrets.DEPLOY_URL }}/"
-      - name: rsync deployments
-        uses: burnett01/rsync-deployments@5.2.1
-        with:
-          switches: -avzr --delete --compress
-          path: public/
-          remote_path: ${{ secrets.DEPLOY_PATH }}
-          remote_host: ${{ secrets.DEPLOY_HOST }}
-          remote_user: ${{ secrets.DEPLOY_USER }}
-          remote_key: ${{ secrets.DEPLOY_KEY }}
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: 'latest'
+
+    - name: Build Hugo site
+      run: |
+            hugo --minify \
+            --noTimes \
+            --baseURL "https://mrchoke.org/"
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+    - name: Deploy to DigitalOcean
+      run: |
+        rsync -avz --delete --compress public/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
