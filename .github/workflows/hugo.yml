@@ -33,4 +33,4 @@ jobs:
       env:
         RSYNC_RSH: "ssh -i ${{ secrets.DEPLOY_KEY }} -o StrictHostKeyChecking=no"
       run: |
-        rsync -avz --delete --compress -e "$RSYNC_RSH"" public/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
+        rsync -avz --delete --compress -e "$RSYNC_RSH" public/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}
